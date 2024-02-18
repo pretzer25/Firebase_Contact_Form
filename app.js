@@ -2,11 +2,11 @@
   const firebaseConfig = {
     apiKey: "AIzaSyAQYdEIrsksIn6Rye1TZ9ZoyrLHU6jfHg4",
     authDomain: "max-learn-b0415.firebaseapp.com",
+    databaseURL: "https://max-learn60415-default-rtdb.firebaseio.com",
     projectId: "max-learn-b0415",
     storageBucket: "max-learn-b0415.appspot.com",
     messagingSenderId: "530326840871",
     appId: "1:530326840871:web:7c2f6df90be90127409002",
-    measurementId: "G-RS36TEXZFH"
   };
 
 // Initialize Firebase
