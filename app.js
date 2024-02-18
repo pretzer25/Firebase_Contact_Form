@@ -1,11 +1,8 @@
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Configuring Firebase
   const firebaseConfig = {
     apiKey: "AIzaSyAQYdEIrsksIn6Rye1TZ9ZoyrLHU6jfHg4",
     authDomain: "max-learn-b0415.firebaseapp.com",
@@ -16,6 +13,46 @@
     measurementId: "G-RS36TEXZFH"
   };
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Referencing Database
+let contactFormDB = firebase.database().ref('contactForm');
+
+document.getElementById('contactForm').addEventListener('submit', submitForm);
+
+// Submit the form
+function submitForm(e) {
+    e.preventDefault();
+
+    let name = getElementVal('name');
+    let email = getElementVal('email');
+    let message = getElementVal('message');
+
+    saveMessages(name, email, message);
+
+    // Enable Alert
+    document.getElementById('alert').style.display = 'block';
+
+    // Remove Alert
+    setTimeout(() => {
+        document.getElementById('alert').style.display = 'none';
+    }, 3000);
+
+    // Reset the form
+    document.getElementById('contactForm').reset();
+}
+
+// Saving the messages
+const saveMessages = (name, email, message) => {
+    let newContactForm = contactFormDB.push();
+    newContactForm.set({
+        name: name,
+        email: email,
+        message: message
+    })
+};
+
+const getElementVal = (id) => {
+    return document.getElementById(id).value;
+};
